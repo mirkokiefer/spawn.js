@@ -1,6 +1,6 @@
 {
-  "name": "worker-lib",
-  "description": "Seemless multi-process worker management",
+  "name": "livelyworkers",
+  "description": "Seamless multi-process worker management",
   "version": "0.0.1",
   "author": "Mirko Kiefer <mail@mirkokiefer.com> (http://www.mirkokiefer.com)",
   "main": "worker",
