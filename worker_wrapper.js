@@ -13,7 +13,7 @@ var startWorker = function(workerCode) {
   		vm.runInNewContext('tempFun = ' + workerCode, sandbox, 'worker_instance.js');
   		return sandbox.tempFun;
   	} catch(e) {
-  		console.log(e);
+  		sys.debug(e);
   	}
   };
   var workerFun = workerFromCode(workerCode);
@@ -25,7 +25,6 @@ var startWorker = function(workerCode) {
 };
 
 onmessage = function(e) {
-  console.log("worker: " + JSON.stringify(e.data));
   var message = e.data;
 	if(!events) {
 		startWorker(message.workerCode);

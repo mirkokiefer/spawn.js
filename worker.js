@@ -14,14 +14,12 @@ var workerHandler = (function() {
 		  emitter.emit('terminated');
 		});
 		emitter.onAll(function() {
-		  console.log("onAll: " + JSON.stringify(arguments));
 		  if(worker) {
   		  worker.postMessage({arguments: objectToArray(arguments)});		    
 		  }
 		});
 		worker.onmessage = function(e) {
 			var event = e.data.arguments;
-			console.log("master: " + JSON.stringify(event));
 		  emitter.constructor.prototype.emit.apply(emitter, event);
 		};
 		worker.postMessage({workerCode: workerFun.toString()});
