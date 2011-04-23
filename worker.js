@@ -14,7 +14,9 @@ var workerHandler = (function() {
 		var emitter = createSyncedEmitter();
 		emitter.onAll(function() {
 		  console.log("onAll: " + JSON.stringify(arguments));
-  		worker.postMessage({arguments: objectToArray(arguments)});		    
+		  if(worker) {
+  		  worker.postMessage({arguments: objectToArray(arguments)});		    
+		  }
 		});
 		worker.onmessage = function(e) {
 			var event = e.data.arguments;
@@ -22,6 +24,11 @@ var workerHandler = (function() {
 		  emitter.constructor.prototype.emit.apply(emitter, event);
 		};
 		worker.postMessage({workerCode: workerFun.toString()});
+		emitter.on('terminate', function() {
+		  worker.terminate();
+		  worker = undefined;
+		  emitter.emit('terminated');
+		});
 		return emitter;
 	};
 	return obj;

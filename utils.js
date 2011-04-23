@@ -15,6 +15,7 @@ var createSyncedEmitter = function() {
     })
     this.constructor.prototype.emit.apply(this, arguments);
   }
+  syncedEmitter.setMaxListeners(0);
   return syncedEmitter;
 }
 

@@ -35,6 +35,18 @@ vows.describe('workers').addBatch({
 		  },
 		  'worker responds': function(err, message) {
 		    assert.equal(message, 'test_message');
+		  },
+		  'ask worker to exit:': {
+		    topic: function() {
+  		    var that = this;
+  		    events.on('terminated', function() {
+  		      that.callback(null, true)
+  		    });
+  		    events.emit('please_close');
+  		  },
+  		  'worker dies nicely:': function(err, bool) {
+  		    assert.isTrue(bool);
+  		  }
 		  }
 		}
 	}
