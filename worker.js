@@ -12,6 +12,11 @@ var workerHandler = (function() {
 		var worker = new Worker(path.join(__dirname, 'worker_wrapper.js'));
 		workers.push(worker);
 		var emitter = createSyncedEmitter();
+		emitter.on('terminate', function() {
+		  worker.terminate();
+		  worker = undefined;
+		  emitter.emit('terminated');
+		});
 		emitter.onAll(function() {
 		  console.log("onAll: " + JSON.stringify(arguments));
 		  if(worker) {
@@ -24,11 +29,6 @@ var workerHandler = (function() {
 		  emitter.constructor.prototype.emit.apply(emitter, event);
 		};
 		worker.postMessage({workerCode: workerFun.toString()});
-		emitter.on('terminate', function() {
-		  worker.terminate();
-		  worker = undefined;
-		  emitter.emit('terminated');
-		});
 		return emitter;
 	};
 	return obj;
