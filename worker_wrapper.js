@@ -23,6 +23,7 @@ var startWorker = function(workerCode) {
 	});
 	workerFun(events);
 };
+
 onmessage = function(e) {
   console.log("worker: " + JSON.stringify(e.data));
   var message = e.data;
