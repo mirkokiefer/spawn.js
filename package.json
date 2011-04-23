@@ -1,0 +1,18 @@
+{
+  "name": "worker-lib",
+  "description": "Seemless multi-process worker management",
+  "version": "0.0.1",
+  "author": "Mirko Kiefer <mail@mirkokiefer.com> (http://www.mirkokiefer.com)",
+  "main": "worker",
+  "directories": { "test": "./test"},
+  "dependencies": {
+		"webworker": "https://github.com/mirkok/node-webworker/tarball/master",
+		"underscore": "https://github.com/mirkok/underscore/tarball/master"
+  },
+  "devDependencies": {
+    "vows": "*"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
