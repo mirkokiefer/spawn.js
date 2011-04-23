@@ -14,7 +14,7 @@ var workerHandler = (function() {
 		var emitter = createSyncedEmitter();
 		emitter.onAll(function() {
 		  console.log("onAll: " + JSON.stringify(arguments));
-		  worker.postMessage({arguments: objectToArray(arguments)});
+  		worker.postMessage({arguments: objectToArray(arguments)});		    
 		});
 		worker.onmessage = function(e) {
 			var event = e.data.arguments;
