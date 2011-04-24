@@ -6,7 +6,8 @@ var objectToArray = lcUtils.objectToArray;
 
 var events;
 
-var startWorker = function(workerCode) {
+var startWorker = function(message) {
+  var workerFun;
   var workerFromCode = function(workerCode) {
   	try {
   		var sandbox = {tempFun: null};
@@ -16,7 +17,14 @@ var startWorker = function(workerCode) {
   		sys.debug(e);
   	}
   };
-  var workerFun = workerFromCode(workerCode);
+  var workerFromFile = function(workerPath) {
+    return require(workerPath).worker;
+  }
+  if(message.workerCode) {
+    workerFun = workerFromCode(message.workerCode);
+  } else {
+    workerFun = workerFromFile(message.workerPath);
+  }
 	events = createExtendedEmitter();
 	events.onAll(function() {
 	  postMessage({arguments: objectToArray(arguments)});
@@ -27,7 +35,7 @@ var startWorker = function(workerCode) {
 onmessage = function(e) {
   var message = e.data;
 	if(!events) {
-		startWorker(message.workerCode);
+		startWorker(message);
 	} else {
 		events.constructor.prototype.emit.apply(events, message.arguments);
 	}

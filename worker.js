@@ -5,7 +5,7 @@ var objectToArray = require('./utils').objectToArray;
 
 var workerHandler = (function() {
 	var obj = {};
-	obj.spawn = function(workerFun) {
+	obj.spawn = function(funOrPath) {
 		var worker = new Worker(path.join(__dirname, 'worker_wrapper.js'));
 		var emitter = createExtendedEmitter();
 		emitter.on('terminate', function() {
@@ -22,7 +22,11 @@ var workerHandler = (function() {
 			var event = e.data.arguments;
 		  emitter.constructor.prototype.emit.apply(emitter, event);
 		};
-		worker.postMessage({workerCode: workerFun.toString()});
+		if(funOrPath.constructor == Function) {
+  		worker.postMessage({workerCode: funOrPath.toString()});		  
+		} else {
+		  worker.postMessage({workerPath: funOrPath});	
+		}
 		return emitter;
 	};
 	return obj;
