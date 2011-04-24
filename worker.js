@@ -1,13 +1,13 @@
 var path = require('path');
 var Worker = require('webworker').Worker;
-var createSyncedEmitter = require('./utils').createSyncedEmitter;
+var createExtendedEmitter = require('./utils').createExtendedEmitter;
 var objectToArray = require('./utils').objectToArray;
 
 var workerHandler = (function() {
 	var obj = {};
 	obj.spawn = function(workerFun) {
 		var worker = new Worker(path.join(__dirname, 'worker_wrapper.js'));
-		var emitter = createSyncedEmitter();
+		var emitter = createExtendedEmitter();
 		emitter.on('terminate', function() {
 		  worker.terminate();
 		  worker = undefined;

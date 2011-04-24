@@ -1,7 +1,7 @@
 var vm = require('vm');
 var sys = require('sys');
 var lcUtils = require(__dirname + '/utils');
-var createSyncedEmitter = lcUtils.createSyncedEmitter;
+var createExtendedEmitter = lcUtils.createExtendedEmitter;
 var objectToArray = lcUtils.objectToArray;
 
 var events;
@@ -17,7 +17,7 @@ var startWorker = function(workerCode) {
   	}
   };
   var workerFun = workerFromCode(workerCode);
-	events = createSyncedEmitter();
+	events = createExtendedEmitter();
 	events.onAll(function() {
 	  postMessage({arguments: objectToArray(arguments)});
 	});

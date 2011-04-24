@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
 var _ = require('underscore');
 
-var createSyncedEmitter = function() {
+var createExtendedEmitter = function() {
   var emitter = new EventEmitter();
   var syncedEmitter = _.create(emitter);
   var globalListeners = [];
@@ -27,5 +27,5 @@ var objectToArray = function(object) {
   return array;
 }
 
-exports.createSyncedEmitter = createSyncedEmitter;
+exports.createExtendedEmitter = createExtendedEmitter;
 exports.objectToArray = objectToArray;
