@@ -33,3 +33,4 @@ var workerHandler = (function() {
 }());
 
 exports.spawn = workerHandler.spawn;
+exports.createExtendedEmitter = createExtendedEmitter;
