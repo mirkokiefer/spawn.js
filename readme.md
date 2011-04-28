@@ -69,6 +69,19 @@ exports.worker = function(anEventEmitter) { }
 ### EventEmitter:
 The event emitters passed to the worker function and returned by spawn, behaves as described in the [Node.js documentation](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter). As all events are copied between the master's and child's version of the emitter you may only pass objects as event parameters that can be serialized to JSON.
 
+There are only two reserved events on the synced EventEmitters:
+#### Event: 'terminate'
+``` javascript
+function() { }
+```
+Emitting this event will terminate the worker.
+
+#### Event: 'terminated'
+``` javascript
+function() { }
+```
+This event will be emitted when the worker has been terminated.
+
 ## Dependencies
 
 Instead of rolling our own custom protocol we rely on the WebWorker API for any communication with spawned workers.
