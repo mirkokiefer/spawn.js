@@ -35,6 +35,7 @@ So in the example above 'helloWorldWorker' and the 'events' parameter in 'helloW
 
 ## Documentation
 You can access the module by doing:
+
 ``` javascript
 var worker = require('livelyworkers');
 ```
