@@ -34,7 +34,10 @@ When spawning a function, LivelyWorkers essentially returns you an [EventEmitter
 So in the example above 'helloWorldWorker' and the 'events' parameter in 'helloWorldFunction' are EventEmitters synced to each other.
 
 ## Documentation
-You can access the module by doing: var worker = require('livelyworkers');
+You can access the module by doing:
+``` javascript
+var worker = require('livelyworkers');
+```
 
 ### spawn:
 ``` javascript
@@ -57,7 +60,7 @@ As the function will get executed within a new Node instance you should not refe
 
 ### worker module:
 If you pass a path to spawn you need to have a module defined like this:
-sample_worker.js
+
 ``` javascript
 exports.worker = function(anEventEmitter) { }
 ```
