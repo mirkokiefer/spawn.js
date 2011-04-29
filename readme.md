@@ -1,4 +1,4 @@
-# LivelyWorkers
+# spawn.js
 
 LivelyWorkers makes multi-process programming with Node.js a joy.
 
@@ -9,7 +9,7 @@ You get back an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#eve
 ## Example
 
 ``` javascript
-var worker = require('livelyworkers');
+var spawn = require('spawn');
 
 var helloWorldFunction = function(events) {
 	events.on('talk_to_me', function() {
@@ -18,7 +18,7 @@ var helloWorldFunction = function(events) {
 };
 
 // spawn helloWorldFunction in a new process:
-var helloWorldWorker = worker.spawn(helloWorldFunction);
+var helloWorldWorker = spawn(helloWorldFunction);
 
 // listen on the helloWorldWorker's EventEmitter:
 helloWorldWorker.on('worker_message', function(message) {
@@ -37,18 +37,18 @@ So in the example above 'helloWorldWorker' and the 'events' parameter in 'helloW
 You can access the module by doing:
 
 ``` javascript
-var worker = require('livelyworkers');
+var spawn = require('spawn');
 ```
 
 ### spawn:
 ``` javascript
-var anEventEmitter = worker.spawn(aWorkerFunction);
+var anEventEmitter = spawn(aWorkerFunction);
 ```
 Spawns a new process running aWorkerFunction by passing it an EventEmitter. A synced version of the same EventEmitter gets returned in the spawning master process.
 All emits on the returned EventEmitter get copied to the workerFunction's emitter. 
 
 ``` javascript
-var anEventEmitter = worker.spawn(aWorkerModulePath);
+var anEventEmitter = spawn(aWorkerModulePath);
 ```
 Spawns a new process by running the function defined in aWorkerModulePath.
 When using this function to spawn a worker you avoid the network and serialization overhead of passing the worker function to the new process. But its of course only half as sexy as having it all defined in one source file...
