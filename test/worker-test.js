@@ -1,6 +1,6 @@
 var assert = require('assert');
 var vows = require('vows');
-var worker = require('../worker');
+var spawn = require('../spawn');
 
 var testWorkerFunction = function(events) {
   events.emit('worker_spawned', true);
@@ -29,7 +29,7 @@ vows.describe('workers').addBatch({
 	'spawned worker from function:':  {
 		topic: function() {
 			var that = this;
-			var events = worker.spawn(testWorkerFunction);
+			var events = spawn(testWorkerFunction);
 			events.on('worker_spawned', function(success) {
 			  that.callback(null, testCb(events, success));
 			});
@@ -67,7 +67,7 @@ vows.describe('workers').addBatch({
 	'spawned worker from file:': {
 	  topic: function() {
 	    var that = this;
-  		var events = worker.spawn(__dirname + '/worker-file.js');
+  		var events = spawn(__dirname + '/worker-file.js');
   		events.on('worker_spawned', function(success) {
   		  that.callback(null, testCb(events, success));
   		});

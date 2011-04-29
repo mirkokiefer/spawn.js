@@ -1,9 +1,9 @@
 {
-  "name": "livelyworkers",
+  "name": "spawn",
   "description": "Seamless multi-process worker management",
   "version": "0.0.1",
   "author": "Mirko Kiefer <mail@mirkokiefer.com> (http://www.mirkokiefer.com)",
-  "main": "worker",
+  "main": "spawn",
   "directories": { "test": "./test"},
   "dependencies": {
 		"webworker": "https://github.com/mirkok/node-webworker/tarball/master",

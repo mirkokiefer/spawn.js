@@ -32,5 +32,4 @@ var workerHandler = (function() {
 	return obj;
 }());
 
-exports.spawn = workerHandler.spawn;
-exports.createExtendedEmitter = createExtendedEmitter;
+module.exports = workerHandler.spawn;
