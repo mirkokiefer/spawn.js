@@ -12,9 +12,9 @@ You get back an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#eve
 var spawn = require('spawn');
 
 var helloWorldFunction = function(events) {
-	events.on('talk_to_me', function() {
-		events.emit('worker_message', 'hello_world');
-	});
+  events.on('talk_to_me', function() {
+    events.emit('worker_message', 'hello_world');
+  });
 };
 
 // spawn helloWorldFunction in a new process:
@@ -22,7 +22,7 @@ var helloWorldWorker = spawn(helloWorldFunction);
 
 // listen on the helloWorldWorker's EventEmitter:
 helloWorldWorker.on('worker_message', function(message) {
-	console.log(message);
+  console.log(message);
 });
 
 // emit an event that gets propagated to the worker:
