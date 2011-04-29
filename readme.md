@@ -1,6 +1,6 @@
 # spawn.js
 
-LivelyWorkers makes multi-process programming with Node.js a joy.
+spawn.js makes multi-process programming with Node.js a joy.
 
 The library allows you to spawn any function in a new Node.js instance.
 
@@ -29,7 +29,7 @@ helloWorldWorker.on('worker_message', function(message) {
 helloWorldWorker.emit('talk_to_me');
 ```
 
-When spawning a function, LivelyWorkers essentially returns you an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter) that gets synced between the master and child process.
+When spawning a function, spawn.js essentially returns you an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter) that gets synced between the master and child process.
 
 So in the example above 'helloWorldWorker' and the 'events' parameter in 'helloWorldFunction' are EventEmitters synced to each other.
 
