@@ -1,6 +1,6 @@
 # spawn.js
 
-spawn.js makes multi-process programming with Node.js a joy.
+spawn.js aims to make multi-process programming with Node.js a joy.
 
 The library allows you to spawn any function in a new Node.js instance.
 
