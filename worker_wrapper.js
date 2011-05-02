@@ -18,7 +18,7 @@ var startWorker = function(message) {
     }
   };
   var workerFromFile = function(workerPath) {
-    return require(workerPath).worker;
+    return require(workerPath);
   }
   if(message.workerCode) {
     workerFun = workerFromCode(message.workerCode);

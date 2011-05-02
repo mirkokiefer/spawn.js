@@ -63,7 +63,7 @@ As the function will get executed within a new Node instance you should not refe
 If you pass a path to spawn you need to have a module defined like this:
 
 ``` javascript
-exports.worker = function(anEventEmitter) { }
+module.exports = function(anEventEmitter) { }
 ```
 
 ### EventEmitter:
